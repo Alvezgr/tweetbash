@@ -1,6 +1,5 @@
 """module for tweepy app"""
 
-import sys
 import tweepy
 from read import get_pass
 
@@ -28,16 +27,14 @@ def update_status():
 
     tweet = access_twitter()
 
-    try:
-        twit = str(sys.argv[1])
-        if len(twit) > 238:
-            return 'Tweet to long'
+    twit = input("write your twit here! only 240 characters: ")
+    if len(twit) > 240:
+        return 'Tweet to long'
 
-    except IndexError:
-        return 'Non tweet to update'
-
-    tweet.update_status(twit)
-    return f'Tweett published, all ok! tweet: {twit}'
+    if twit:
+        tweet.update_status(twit)
+        return f'Tweett published, all ok! tweet: {twit}'
+    return 'nothing to update'
 
 
 if __name__ == '__main__':
